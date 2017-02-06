@@ -1,0 +1,76 @@
+.container{
+	width:500px;height:780px;margin: 0 auto;border:1px solid red;
+	background-image: url(../images/background.jpg);
+}
+#title{
+	text-align: center;padding-top: 20px;
+}
+#artist{
+	text-align: center;
+}
+#img{
+	width: 200px;height: 200px;border-radius: 50%;
+}
+.controls{
+	width: 400px;height: 48px;margin:70px auto;
+}
+#pre{
+	width: 33%;height:32px;float: left;text-align: center;margin-top: 8px;
+}
+#next{
+	width: 33%;height:32px;float: left;text-align: center;margin-top: 8px;
+}
+#loadBar{
+	width:280px;height:2px;margin: 0 auto; 
+}
+#bar{
+	width:280px;height:2px;
+	border:1px solid #e6e6e6;
+	margin:40px 0 0 0;
+	-webkit-appearance: none;
+}
+#bar::-webkit-slider-thumb {   
+    width: 0.6rem;   
+    height: 0.6rem;   
+    background:#f18900;   
+    border: 1px solid #f18900;   
+    cursor: pointer;   
+    border-radius: 0.3rem;   
+    -webkit-appearance: none !important; 
+}  
+input[type=range]:focus {
+    outline: none;
+}
+#progressBar{
+	position: relative;
+	top: 43px;
+	margin:0 auto;
+	display: block;
+}
+.lrc{
+	position: relative;
+	margin-top: 150px;
+
+}
+.on{
+	color: red;
+	font-size:20px;
+}
+.box{
+	height: 500px;width:280px;margin:0 auto;text-align: center;overflow: hidden;display: none;
+}
+.pic{
+	height: 350px;
+	text-align: center;
+	margin-top:171.5px;
+}
+.showLyric{
+	position:relative;
+	left: 430px;
+	opacity: 0.5;
+	border-radius: 15px;
+	outline:none;
+}
+#play{
+	width: 33%;height:48px;float: left;text-align: center;
+}
