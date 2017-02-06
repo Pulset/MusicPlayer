@@ -69,7 +69,7 @@ function getPercentage(){                               //进度
 }
   function getsongs(){                                  //get歌曲
   $.ajax({                                                                                     
-          type:'get',
+          type:'post',
           url:"http://api.jirengu.com/fm/getSong.php?channel=4",
           dataTypes:'json',
           success:function(data){
