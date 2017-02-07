@@ -67,38 +67,13 @@ function getPercentage(){                               //进度
     }
 });
 }
-//   function getsongs(){                                  //get歌曲
-//   $.ajax({                                                                                     
-//           type:'get',
-//           url:'http://api.jirengu.com/fm/getSong.php?channel=4',
-//           dataTypes:'json',
-//           success:function(data){
-//                 data=toJson(data);
-//                 $('#song').attr('src',data.song[0].url);
-//                 $('#title').html(data.song[0].title);
-//                 $('#artist').html(data.song[0].artist);
-//                 $('#img').attr('src',data.song[0].picture);
-//                 a.push(data.song[0]);
-//                 b.push(data.song[0].sid);
-//                 lrc_sid=data.song[0].sid;
-//                 getLrc();   
-//           },
-//           error: function(){
-//                  alert('fail');
-//              }
-//   });
-
-// }
-function getsongs(){                                  //get歌曲
+  function getsongs(){                                  //get歌曲
   $.ajax({                                                                                     
-           type: "get",
-             async: false,
-             url: "http://api.jirengu.com/fm/getSong.php?channel=4",
-             dataType: "jsonp",
-             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-             jsonpCallback:"message",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+          type:'get',
+          url:'http://api.jirengu.com/fm/getSong.php?channel=4?channel=public_tuijian_spring',
+          dataTypes:'json',
           success:function(data){
-                // data=toJson(data);
+                data=toJson(data);
                 $('#song').attr('src',data.song[0].url);
                 $('#title').html(data.song[0].title);
                 $('#artist').html(data.song[0].artist);
@@ -106,20 +81,15 @@ function getsongs(){                                  //get歌曲
                 a.push(data.song[0]);
                 b.push(data.song[0].sid);
                 lrc_sid=data.song[0].sid;
-                getLrc();    
-                console.log(data)
-                // console.log(message())
+                getLrc();   
           },
           error: function(){
-                 alert('fail');
+                 alert('获取信息失败');
              }
   });
 
-} 
-function message(data) {
-    
-    console.log(data);
 }
+
 function getLrc() {
   $.post('http://api.jirengu.com/fm/getLyric.php',{sid:lrc_sid})
     .done(function(lyric) {
