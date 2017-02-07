@@ -96,7 +96,7 @@ function getsongs(){                                  //get歌曲
              url: "http://api.jirengu.com/fm/getSong.php?channel=4",
              dataType: "jsonp",
              jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-             // jsonpCallback:"message",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+             jsonpCallback:"message",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
           success:function(data){
                 // data=toJson(data);
                 $('#song').attr('src',data.song[0].url);
@@ -107,7 +107,8 @@ function getsongs(){                                  //get歌曲
                 b.push(data.song[0].sid);
                 lrc_sid=data.song[0].sid;
                 getLrc();    
-                // console.log(data)
+                console.log(data)
+                // console.log(message())
           },
           error: function(){
                  alert('fail');
@@ -115,10 +116,10 @@ function getsongs(){                                  //get歌曲
   });
 
 } 
-// function message(data) {
+function message(data) {
     
-//     console.log(data);
-// }
+    console.log(data);
+}
 function getLrc() {
   $.post('http://api.jirengu.com/fm/getLyric.php',{sid:lrc_sid})
     .done(function(lyric) {
