@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" >
-  <title>Document</title>
+  <title>MusicPlayer</title>
  <link rel="stylesheet" type="text/css" href='stylesheets/index.css'>
 </head>
 <body>
-<iframe id="iframe_id" src="http://api.jirengu.com/fm/getSong.php?channel=4" style="display: none;" ></iframe>
+
 <div class="container">
   <h4 id="title"></h4>      <!-- 歌曲名 -->
   <h4 id="artist" ></h4>    <!-- 歌手 -->
@@ -31,7 +31,46 @@
 </div>
    
 </body>
-<script type="text/javascript" src="http://api.jirengu.com/fm/getSong.php?channel=4"></script> 
 <script type="text/javascript" src="javascript/jquery-3.1.0.js"></script>
+<!-- <script type="text/javascript">
+     $(document).ready(function(){ 
+         function getsongs(){                                  //get歌曲
+  $.ajax({                                                                                     
+           type: "get",
+             async: false,
+             url: "http://api.jirengu.com/fm/getSong.php?channel=4",
+             dataType: "jsonp",
+             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+             jsonpCallback:"message",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+          success:function(data){
+                data=toJson(data);
+                $('#song').attr('src',data.song[0].url);
+                $('#title').html(data.song[0].title);
+                $('#artist').html(data.song[0].artist);
+                $('#img').attr('src',data.song[0].picture);
+                a.push(data.song[0]);
+                b.push(data.song[0].sid);
+                lrc_sid=data.song[0].sid;
+                getLrc();    
+          },
+          error: function(){
+                 alert('fail');
+             }
+  });
+
+} 
+       
+   
+     });
+</script> -->
 <script type="text/javascript" src='javascript/index.js'></script>
+<!-- <script>
+   function myFn ( data ) {
+        data=toJson(data);
+        alert(data)
+    }
+</script> -->
+<!-- <script type='text/javascript' src='http://api.jirengu.com/fm/getSong.php?channel=4?callback=myFn'/>
+ -->
+
 </html>
