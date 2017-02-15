@@ -1,10 +1,10 @@
-var a=[],b=[],lyric_parsed=[];;
+var a=[],b=[],lyric_parsed=[];
 var i=0;
 var audio=document.getElementById('song');
 var drawing=document.getElementById('progressBar');
 var context=drawing.getContext('2d');
 var Lyric,h;
-var k=0;var n=0;var time=0;
+var k=0;var n=0;var time=0;var second=0;
 $lrc=$('.lrc').find('p');
 function clear() {
       if(drawing.getContext){
@@ -65,6 +65,19 @@ function getPercentage(){                               //进度
     if(drawing.getContext){
       context.clearRect(0,0,280*percentage/100,2);
     }
+    for (var m in lyric_parsed) {
+    if(audio.currentTime<lyric_parsed[m].second){
+      m=lyric_parsed[m].index-1;
+      break;
+    }
+
+  }
+             time=audio.currentTime;
+              $lrc=$('.lrc').find('p');
+              $lrc.eq(m).addClass('on');
+              $lrc.eq(m-1).removeClass('on');
+             $('.lrc').animate({top:-28*(m+1)},1000);
+
 });
 }
   function getsongs(){                                  //get歌曲
@@ -110,7 +123,6 @@ function parseLyric(lrc) {
         var timeRegExpArr = lyric.match(timeReg);
         if(!timeRegExpArr)continue;
         var clause = lyric.replace(timeReg,'');
-
         for(var k = 0,h = timeRegExpArr.length;k < h;k++) {
             var t = timeRegExpArr[k];
             var min = Number(String(t.match(/\[\d*/i)).slice(1)),
@@ -132,28 +144,25 @@ function showLrc() {
                           // if(!txt)txt = "&nbsp;";
                           var p=$("<p>"+txt+"</p>");
                           $('.lrc').append(p);
-
                           lyric_parsed[k] = {
                           index:n++,
-                          text:txt  
+                          text:txt,
+                          second:k  
                           }; 
-                  }
+                  }     
             }
 }
 
 function updateLrc() {
-  var currentTime = Math.round(audio.currentTime);
-  // if (lrc) {
-  //   $('p').removeClass('on');
-  //   $("p:contains('"+lrc+"')").addClass('on');
-  // }
+  var currentTime = Math.floor(audio.currentTime);
      if (lyric_parsed[currentTime]) { 
               k=lyric_parsed[currentTime].index;
               time=currentTime-time;
               $lrc=$('.lrc').find('p');
               $lrc.eq(k).addClass('on');
               $lrc.eq(k-1).removeClass('on');
-             $('.lrc').animate({top:-25*k},time);
+              if(!$('.lrc').is(':animated')){$('.lrc').animate({top:-28*k},time); }
+              time=currentTime;
             } 
 }
    var timeout, rotate = 0;                           //旋转
@@ -170,7 +179,7 @@ function updateLrc() {
                 if (rotate > 360) {
                     rotate = 0;
                 }
-            }, 30);
+            }, 50);
         }
         function stopAnim() {
             clearInterval(timeout);

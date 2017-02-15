@@ -1,5 +1,7 @@
 .container{
-	width:500px;height:780px;margin: 0 auto;border:1px solid red;
+	width:500px;height:780px;
+	/*width: 100%;height: 100%;*/
+	margin: 0 auto;border:1px solid red;
 	background-image: url(../images/background.jpg);
 }
 #title{
@@ -9,7 +11,8 @@
 	text-align: center;
 }
 #img{
-	width: 200px;height: 200px;border-radius: 50%;
+	width: 200px;height: 200px;border-radius: 50%;overflow: hidden;
+	
 }
 .controls{
 	width: 400px;height: 48px;margin:70px auto;
@@ -24,7 +27,7 @@
 	width:280px;height:2px;margin: 0 auto; 
 }
 #bar{
-	width:280px;height:2px;
+	width:280px;height:3px;
 	border:1px solid #e6e6e6;
 	margin:40px 0 0 0;
 	-webkit-appearance: none;
@@ -57,7 +60,7 @@ input[type=range]:focus {
 	font-size:20px;
 }
 .box{
-	height: 500px;width:280px;margin:0 auto;text-align: center;overflow: hidden;display: none;
+	height: 500px;width:400px;margin:0 auto;text-align: center;overflow: hidden;display: none;
 }
 .pic{
 	height: 350px;
